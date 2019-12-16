@@ -47,6 +47,7 @@ public class PacketFileTest {
         assertArrayEquals("part data should be correct", new byte[] {1,5,3}, testFile.parts.get((short) 5));
     }
 
+    @Test
     public void testDataPacket() {
         byte fileID = 12;
         PacketFile testFile = new PacketFile(fileID);
@@ -58,6 +59,7 @@ public class PacketFileTest {
         assertArrayEquals("part data should be correct", new byte[] {2,5,4,6,7,1,2,3}, testFile.parts.get((short) 5));
     }
 
+    @Test
     public void testMultipleDataPacket() {
         byte fileID = 12;
         PacketFile testFile = new PacketFile(fileID);
