@@ -46,6 +46,7 @@ public class Main {
         files.putIfAbsent(fileID, new PacketFile(fileID));
         boolean fileDone = files.get(fileID).addPacket(status, fileID, data, length);
         if(fileDone) {
+            files.get(fileID).writeFile();
             numDone++;
         }
     }

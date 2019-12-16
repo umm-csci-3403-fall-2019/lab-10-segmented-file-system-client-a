@@ -7,6 +7,11 @@ import com.google.common.primitives.Shorts;
 
 import org.junit.Test;
 
+/**
+ * This is just a stub test file. You should rename it to
+ * something meaningful in your context and populate it with
+ * useful tests.
+ */
 public class PacketFileTest {
 
     @Test
@@ -64,6 +69,15 @@ public class PacketFileTest {
         assertEquals("parts size should be 2", 2, testFile.parts.size());
         assertArrayEquals("part data should be correct", new byte[] {1,5,3}, testFile.parts.get((short) 1));
         assertArrayEquals("part data should be correct", new byte[] {2,5,4,6,7,1,2,3}, testFile.parts.get((short) 0));
+        
+        testFile.addPacket((byte) 0, fileID, new byte[] {0, fileID, 'T', 'e', 's', 't'}, 6);
+        result = testFile.addPacket((byte) 11, fileID, Bytes.concat(new byte[] {(byte) 11, fileID}, Shorts.toByteArray((short) 2), new byte[] {1,5,3}), 7);
+        
+        assertTrue("result of addPacket should be true", result);
+        assertTrue("hasHeader should be set", testFile.hasHeader);
+        assertEquals("filename should be correct", "Test", testFile.fileName);
+        assertTrue("hasEndPacket should be set", testFile.hasEndPacket);
+        assertEquals("parts size should be 3", 3, testFile.parts.size());
     }
 
 }
