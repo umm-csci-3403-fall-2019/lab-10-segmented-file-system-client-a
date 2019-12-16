@@ -8,7 +8,7 @@
 # one time.
 setup(){
     if [ "$BATS_TEST_NUMBER" -eq 1 ]; then
-       cd src
+       #cd src
 
        # Clean out any previously downloaded files.
        rm -f small.txt
@@ -16,13 +16,15 @@ setup(){
        rm -f binary.jpg
 
        # (Re)compile the code
-       rm -f segmentedfilesystem/*.class
-       javac segmentedfilesystem/*.java
+       #rm -f segmentedfilesystem/*.class
+       #javac segmentedfilesystem/*.java
 
        # Run the client
-       java segmentedfilesystem.Main csci-4409.morris.umn.edu
+       #java segmentedfilesystem.Main csci-4409.morris.umn.edu
 
-       cd ..
+       ./gradlew run --args="csci-4409.morris.umn.edu"
+
+       #cd ..
     fi
 }
 
@@ -32,19 +34,19 @@ setup(){
   # the diff if this test is failing. Similar lines can
   # help with the other tests.
   # diff test/target-files/small.txt src/small.txt
-  run diff test/target-files/small.txt src/small.txt
+  run diff test/target-files/small.txt small.txt
 
   [ "$status" -eq 0 ]
 }
 
 @test "Your client correctly assembled AsYouLikeIt.txt" {
-  run diff test/target-files/AsYouLikeIt.txt src/AsYouLikeIt.txt
+  run diff test/target-files/AsYouLikeIt.txt AsYouLikeIt.txt
 
   [ "$status" -eq 0 ]
 }
 
 @test "Your client correctly assembled binary.jpg" {
-  run diff test/target-files/binary.jpg src/binary.jpg
+  run diff test/target-files/binary.jpg binary.jpg
 
   [ "$status" -eq 0 ]
 }
